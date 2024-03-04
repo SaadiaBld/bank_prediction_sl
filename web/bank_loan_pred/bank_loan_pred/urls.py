@@ -17,15 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-#importer les fichiers 'views'
-from bank_loan_pred import views
+#importer les fichiers 'views' de l'app website
+from website import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    #configurer home page et page resultats de predictions
-    path('', include('website.urls'), name='website'),
-    #path('result/', views.result, name='result')
-    path('aboutus/', include('website.urls'), name='aboutus'),
-
+    path('', include('website.urls')),
 ]
