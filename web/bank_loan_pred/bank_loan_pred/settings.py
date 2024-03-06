@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
+print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == '1'
 
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'bank_loan_pred.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,10 +94,10 @@ DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 DB_DATABASE = os.getenv('POSTGRES_DB')
 DB_HOST = os.getenv('POSTGRES_HOST')
 DB_PORT = os.getenv('POSTGRES_PORT')
-DB_RDY = os.getenv('POSTGRES_RDY')
-# print('*******')
-# print(os.getenv('POSTGRES_RDY'))
-# print('*******')
+
+print('*******')
+print('PostgresHost:', DB_HOST)
+print('*******')
 
 
 POSTGRES_AVAIL = all(
@@ -108,29 +110,16 @@ POSTGRES_AVAIL = all(
     ]
 )
 
+DB_RDY = os.getenv('POSTGRES_RDY')
 #POSTGRES_RDY = int(os.getenv('POSTGRES_RDY'))
 
-if POSTGRES_AVAIL and POSTGRES_RDY :
 
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": DB_DATABASE,
-            'USER' : DB_USERNAME,
-            'PASSWORD' : DB_PASSWORD,
-            'HOST' : DB_HOST,
-            'PORT' : DB_PORT
-        }
-    }
 
-else :
-
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }}
 
 
 
@@ -169,12 +158,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL="website.User"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -10,7 +10,7 @@ import os
 
 @login_required
 def api_data(request):
-    url = 'http://172.17.0.3:8001/predict'
+    url = ''
 
     headers = {
     'Accepts': 'application/json',
@@ -33,26 +33,26 @@ def api_data(request):
             form.save()
             print('ok')
 
-            return render(request, "main/api_data.html", context={'form':form, 'data': data})
+            return render(request, "website/api_data.html", context={'form':form, 'data': data})
 
     else:
         form = ModelApiForm()
 
     
-    return render(request, "main/api_data.html", context={'form':form})
+    return render(request, "website/api_data.html", context={'form':form})
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'website/index.html')
 
 def aboutus(request):
-    return render(request, 'aboutus.html')
+    return render(request, 'website/aboutus.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    return render(request, 'website/contact.html')
 
 @login_required
 def special(request):
-    return render(request, 'special.html')
+    return render(request, 'website/special.html')
 
 @login_required
 def api_predict(request):
@@ -79,11 +79,11 @@ def api_predict(request):
             form.save()
             print('ok')
 
-            return render(request, "main/api_predict.html", context={'form':form, 'data': data})
+            return render(request, "website/api_predict.html", context={'form':form, 'data': data})
 
     else:
         form = ModelApiForm()
 
     
-    return render(request, "main/api_predict.html", context={'form':form})
+    return render(request, "website/api_predict.html", context={'form':form})
 
