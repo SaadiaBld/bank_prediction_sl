@@ -1,81 +1,88 @@
 from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
-from model_utils import load_model, prediction 
-from database import Database
-from person import Person
+from model_utils import load_model, prediction
 from http.client import HTTPException
 from enum import Enum
 from fastapi.templating import Jinja2Templates 
+from joblib import load 
 
 app = FastAPI()
+model = load_model()
 
-class Features(Enum):
-    NAICS = 'naics'
-    Term = 'term' 
-    NewExist = 'newexit'
-    UrbanRural = 'urbanrural' 
-    RevLineCr = 'revlinecr'
-    LowDoc = 'lowdoc'
+
+
+# Modèle Pydantic pour la structure de données d'entrée
+class FeaturesInput(BaseModel):
+    Term: float 
+    FranchiseCode: float 
+    UrbanRural: float 
+    RevLineCr: str
+    LowDoc: str
+    GrAppv: int
+    SBA_Appv: int
+    NAICS_digit: int 
+
 
 class PredictionOutput(BaseModel):
     category:int
 
-model = load_model()
 
-database = Database()
-
-FEATURES = [{'NAICS': '', 'Term': '', 'NewExist': '', 'UrbanRural': '', 'RevLineCr': '', 'LowDoc': ''}]
-
-@app.get("/features")
-async def features() -> list[dict]:
-    return FEATURES
-
-@app.get("/features/{features_id}", status_code=206)
-async def features(features_id: int) -> str:
-    features = next((b for b in features if b['id'] == features_id), None)
-    if features is None :
-        raise HTTPException(status_code=404, detail='features not found')
-    return features
-
-@app.get('/features/genre/{genre}') 
-async def features_for_genre(genre: Features) -> list[dict]:
-    return [b for b in FEATURES if b['genre'].lower() == genre.lower()]
+@app.post('/predict')
+def prediction_root(feature_input:FeaturesInput):
+    F1=feature_input.Term
+    F2=feature_input.FranchiseCode
+    F3=feature_input.UrbanRural
+    F4=feature_input.RevLineCr
+    F5=feature_input.LowDoc
+    F6=feature_input.GrAppv
+    F7=feature_input.SBA_Appv
+    F8=feature_input.NAICS_digit 
+    
+    pred = prediction(model,[[F1,F2,F3,F4,F5,F6,F7,F8]])
+    
+    return PredictionOutput(category=pred)
 
 
-@app.head("/api/persons/")
-async def toto():
-    return database.head() 
+"""
+### Facultatif
+# Liste pour stocker les items
+items_db = []
 
-@app.get("/api/persons/")
-async def index(nom):
-    return {"hello": "world"}
+# récupère toutes les caractéristiques de l'items (NAICS, Term, NewExist, UrbanRural, RevLineCr, LowDoc)
+@app.get("/items/")
+async def get_items():
+    return items_db
 
+# récupère un items par son ID
+@app.get("/items/{item_id}")
+async def get_item(item_id: int):
+    for item in items_db:
+        if item["id"] == item_id:
+            return item
+    raise HTTPException(status_code=404, detail='Item not found')
 
-@app.get("/api/persons")
-def list_persons():
-    return database.list_records()
+# mettre à jour un item existant par son ID
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: FeaturesInput):
+    for index, db_item in enumerate(items_db):
+        if db_item["id"] == items_db:
+            items_db[index] = item.dict()
+            items_db[index]["id"] = item_id 
+            return {"": "Item updtate successfully"}
+    raise HTTPException(status_code=404, detail="Item not found")
 
-@app.get("/api/persons/{person_id}")
-def read_persons(person_id: int):
-    return database.read(person_id)
+# supprimer item existant par son id
+@app.delete("/items/{items_id}")
+async def delete_item(item_id: int):
+    for index, db_item in enumerate(items_db):
+        if db_item["id"] == item_id:
+            del items_db[index]
+            return {"message": "Item supprimé avec succès"}
+    raise HTTPException(status_code=404, detail="Item non trouvé")
 
-
-@app.get("/api/persons/")
-def read_NAICS(person_id: int):
-    return database.read()
-
-@app.get("/")
-async def home() -> dict[str, str]:
-    return {'name': 'louis'}
-
-
-@app.get('/about')
-async def about(): 
-    return 'an exceptional'
-
-@app.post("/predict")
-async def predict(payload: Person):
-    features = [value for value in payload.dict().values()]
-    predictions = prediction(model, [features])
-    return {"predictions": "predictions"}
+# supprimer une personne dont l'id est déjà passé 
+app.delete("/api/items/{item_id}")
+def delete_item(item_id: int):
+    items_db.delete(FeaturesInput)
+"""
