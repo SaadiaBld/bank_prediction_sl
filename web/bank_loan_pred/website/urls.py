@@ -11,5 +11,4 @@ urlpatterns = [
     path('contact/<int:test>', views.contact, name='contact'),
     path('api_pred/', views.api_predict, name='api_predict'),
     path('api_data/', views.api_data, name='api_data'),
-
 ]

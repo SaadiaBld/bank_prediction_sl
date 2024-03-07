@@ -9,10 +9,12 @@ class User(AbstractUser):
 
 
 class ModelApi(models.Model):
-    NAICS = models.IntegerField()
-    Term = models.IntegerField()
-    NewExist = models.IntegerField()
-    UrbanRural = models.IntegerField()
+    Term = models.FloatField()
+    FranchiseCode = models.FloatField()
+    UrbanRural = models.FloatField()
     RevLineCr = models.CharField(max_length=1)
     LowDoc = models.CharField(max_length=1)
+    GrAppv = models.IntegerField()
+    SBA_Appv = models.IntegerField()
+    NAICS_digit = models.IntegerField()
 
