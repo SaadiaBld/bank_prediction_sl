@@ -4,35 +4,54 @@
 
 {% block content %}
 
-<h1 class="mx-auto text-center pb-10 text-xl font-bold">Estimate your loan eligibility today."</h1>
-<h2>Our online tool allows you to determine if you qualify for a loan with SBA Bank.</h2>
-<form action="." method="post" class="max-w-md mx-auto">
+<div class="my-5"> 
+    <h1 class="mx-auto text-center pb-10 text-xl font-bold">Estimate your loan eligibility today.</h1>
+    <h2 class="mb-5 text-center">Our online tool allows you to determine if you qualify for a loan with SBA Bank.</h2>
+</div>
+
+<div> 
+    <form action="." method="post" class="max-w-md mx-auto">
     {% csrf_token %}
-    {{form.sepal_length.label}}
-    {{form.sepal_length|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+   
+    {{form.Term.label}}
+    {{form.Term|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
-    {{form.sepal_width.label}}
-    {{form.sepal_width|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+    {{form.FranchiseCode.label}}
+    {{form.FranchiseCode|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
-    {{form.petal_length.label}}
-    {{form.petal_length|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+    {{form.UrbanRural.label}}
+    {{form.UrbanRural|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
-    {{form.petal_width.label}}
-    {{form.petal_width|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+    {{form.RevLineCr.label}}
+    {{form.RevLineCr|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
-    <button id='submit' type='submit' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+    {{form.LowDoc.label}}
+    {{form.LowDoc|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
+    {{form.GrAppv.label}}
+    {{form.GrAppv|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
 
-</form>
+    {{form.SBA_Appv.label}}
+    {{form.SBA_Appv|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+
+    {{form.NAICS_digit.label}}
+    {{form.NAICS_digit|add_class:"block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"}}
+
+        <div class="my-8"> <!-- Ajoute un espace vertical de 5 unités -->
+            <button id='submit' type='submit' class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+        </div>
+    </form>
+
+</div>
 
 {% if data %}
-
-{{data}}
-
-{% elif error %}
-
-{{e}}
-
+    {% if category == 0 %}
+        <h2>Résultat de la prédiction :</h2>
+        <p>Votre prêt est refusé</p>
+    {% else %}
+        <h2>Résultat de la prédiction :</h2>
+        <p>Votre prêt est acceptée</p>
+    {% endif %}
 {% endif %}
 
 {% endblock content %}   
