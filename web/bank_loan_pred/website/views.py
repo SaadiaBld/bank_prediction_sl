@@ -50,6 +50,9 @@ def aboutus(request):
 def contact(request):
     return render(request, 'website/contact.html')
 
+def api_url():
+    return (os.getenv('API_URL'))
+
 @login_required
 def special(request):
     return render(request, 'website/special.html')

@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  web:
+    depends_on:
+      - postgres_db
+    ports:
+      - 8000:8000
+    env_file:
+      - ./web/bank_loan_pred/.env
+    build: 
+      context: ./web/
+      dockerfile: ./bank_loan_pred/Dockerfile
+    volumes: 
+      - ./web/website:/app/main/
+
+  postgres_db:
+    image: postgres 
+    restart : always
+    platform : linux/amd64
+    env_file:
+      - bank_loan_pred/.env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+volumes:
+  postgres_data:

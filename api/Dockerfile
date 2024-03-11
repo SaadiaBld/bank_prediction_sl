@@ -4,7 +4,7 @@ RUN pip install --upgrade pip
 
 WORKDIR /app
 
-COPY requirements.txt main.py model_utils.py modelcatb.pkl /app
+COPY requirements.txt main.py model_utils.py modelcatb.pkl /app/
 
 RUN pip install -r requirements.txt
 
