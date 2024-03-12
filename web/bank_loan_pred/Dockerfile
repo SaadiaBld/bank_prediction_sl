@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY ./requirements.txt /app
+COPY requirements.txt /app
 
 RUN python -m venv /opt/venv
 ENV PATH="opt/venv/bin:$PATH"
@@ -16,7 +16,5 @@ COPY . /app
 
 EXPOSE 8007
 
-RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT ["sh","/bank_loan_pred/entrypoint.sh"]
-
+ENTRYPOINT ["sh","/app/bank_loan_pred/entrypoint.sh"]
