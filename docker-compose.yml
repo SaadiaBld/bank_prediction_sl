@@ -4,20 +4,20 @@ services:
     depends_on:
       - postgres_db
     ports:
-      - 8007:8001
+      - 8007:80
     env_file:
-      - ./web/bank_loan_pred/.env
+      - ./web/.env
     
 
     build: 
-      context: ./web/bank_loan_pred/
+      context: ./web/
       dockerfile: Dockerfile
     volumes: 
       - ./web/:/app/
 
   api:
     build:
-      context: ./api
+      context: ./api/
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -30,7 +30,7 @@ services:
     restart : always
     platform : linux/amd64
     env_file:
-      - web/bank_loan_pred/.env
+      - web/.env
     ports:
       - 5432:5432
     volumes:
