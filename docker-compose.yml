@@ -7,12 +7,13 @@ services:
       - 8007:8001
     env_file:
       - ./web/bank_loan_pred/.env
+    
 
     build: 
-      context: ./web/
-      dockerfile: ./bank_loan_pred/Dockerfile
+      context: ./web/bank_loan_pred/
+      dockerfile: Dockerfile
     volumes: 
-      - ./web/website:/app/main/
+      - ./web/:/app/
 
   api:
     build:
@@ -29,7 +30,7 @@ services:
     restart : always
     platform : linux/amd64
     env_file:
-      - bank_loan_pred/.env
+      - web/bank_loan_pred/.env
     ports:
       - 5432:5432
     volumes:

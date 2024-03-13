@@ -58,7 +58,7 @@ def special(request):
     return render(request, 'website/special.html')
 
 @login_required
-def api_predict(request):
+def predict(request):
 
     url = 'http://localhost:8001/predict'
 
@@ -83,11 +83,11 @@ def api_predict(request):
             form.save()
             print('ok')
             category=data['category'] #extrait la valeur du dico data = {category: 0 ou 1}
-            return render(request, "website/api_predict.html", context={'form':form, 'data': data, "category":category} )
+            return render(request, "website/predict.html", context={'form':form, 'data': data, "category":category} )
 
     else:
         form = ModelApiForm()
 
     
-    return render(request, "website/api_predict.html", context={'form':form})
+    return render(request, "website/predict.html", context={'form':form})
 
