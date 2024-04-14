@@ -1,4 +1,4 @@
-#Projet : Prédiction de la capacité de remboursement des prêts d'investissement pour l'US SBA Bank.
+# Projet : Prédiction de la capacité de remboursement des prêts d'investissement pour l'US SBA Bank.
 
 L'United States Small Business Administration (US SBA) a été créée en 1953 dans le but d'aider les petites entreprises à obtenir du crédit. Les petites entreprises sont essentielles à la création d'emplois aux États-Unis, contribuant ainsi à réduire le chômage. Cependant, certaines entreprises ont du mal à rembourser leurs prêts garantis par la SBA.
 
