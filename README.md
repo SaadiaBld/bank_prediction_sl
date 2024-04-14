@@ -27,4 +27,3 @@ Il s'agit ici de:
 - Créer une application web composée de l'API pour servir le modèle et d'une application web (Django) pour consommer l'API.
 
 ---
-*Ce projet est réalisé dans le cadre de la formation en data science chez Simplon.*
