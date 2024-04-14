@@ -4,19 +4,19 @@ L'United States Small Business Administration (US SBA) a été créée en 1953 d
 
 Ce projet vise à prédire la capacité de remboursement des prêts des entreprises, une tâche de classification binaire.
 
-Les bjectifs du Projet sont décomposés en 2 parties.
+Les ojectifs du projet sont décomposés en 2 parties.
 
-##Partie 1 : Nettoyage, EDA et Modélisation
+## Partie 1 : Nettoyage, EDA et Modélisation
 
-Dans cette phase, nous allons :
+Dans cette phase préliminaire, nous allons :
 
-    Nettoyer le jeu de données.
+   * Nettoyer le jeu de données.
     Effectuer une analyse exploratoire des données (EDA) pour comprendre les tendances et les relations.
     Préparer les données pour la modélisation en effectuant des pré-traitements et en sélectionnant les caractéristiques pertinentes.
     Entraîner différents modèles de prédiction en utilisant des algorithmes tels que la régression logistique, les random forest, etc.
 
 
-##Partie 2 : Mise en Production : Création de l'Application et de l'API
+## Partie 2 : Mise en Production : Création de l'Application et de l'API
 
 Dans cette phase, nous allons :
 
