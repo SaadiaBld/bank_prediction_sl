@@ -1,0 +1,24 @@
+{% extends base.html%}
+
+{% if user.is_authenticated %}
+<p> Connected as {{user.username}} | <a href="">logout</a></p>
+{% else %}
+<p><a href="">login</a></p>
+{% endif %}
+
+<body class="bg-gray-100">
+    <header class="bg-blue-500 py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-white text-2xl font-bold">Manage your accounts easily.</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-4">
+        <h2 class="text-2xl font-semibold">We are glad to count you in SBA Bank clients!</h2>
+        <p class="text-lg mt-2">Contenu de la page d'accueil pour les utilisateurs authentifiés</p>
+    </main>
+
+
+</body>
+
+</html>
