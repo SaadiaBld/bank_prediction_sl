@@ -1,4 +1,4 @@
-# Projet : Prédiction de la capacité de remboursement des prêts pour l’United States Small Business Administration, US SBA
+# Projet : Prédiction de la capacité de remboursement des prêts d'investissements pour la US SBA
 
 
 ## Contexte
