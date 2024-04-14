@@ -10,16 +10,16 @@ Les ojectifs du projet sont décomposés en 2 parties.
 
 Dans cette phase préliminaire, nous allons :
 
-   * Nettoyer le jeu de données.
-    Effectuer une analyse exploratoire des données (EDA) pour comprendre les tendances et les relations.
-    Préparer les données pour la modélisation en effectuant des pré-traitements et en sélectionnant les caractéristiques pertinentes.
-    Entraîner différents modèles de prédiction en utilisant des algorithmes tels que la régression logistique, les random forest, etc.
+* Nettoyer le jeu de données.
+* Effectuer une analyse exploratoire des données (EDA) pour comprendre les tendances et les relations.
+* Préparer les données pour la modélisation en effectuant des pré-traitements et en sélectionnant les caractéristiques pertinentes.
+* Entraîner différents modèles de prédiction en utilisant des algorithmes tels que la régression logistique, les random forest, etc.
 
 
 ## Partie 2 : Mise en Production : Création de l'Application et de l'API
 
 Dans cette phase, nous allons :
 
-    Utiliser FastAPI pour créer une API permettant d'accéder au modèle de prédiction.
-    Développer une interface utilisateur conviviale avec Django pour permettre aux utilisateurs d'interagir avec l'API.
-    Déployer l'application web sur une plateforme cloud pour la rendre accessible au public.
+* Utiliser FastAPI pour créer une API permettant d'accéder au modèle de prédiction.
+* Développer une interface utilisateur conviviale avec Django pour permettre aux utilisateurs d'interagir avec l'API et de faire une prédiction pour leur prêt.
+* Créer une application web composée d'une API pour servir le modèle et d'une application web pour consommer l'API. Le déploiement est réalisé sur Azure.
